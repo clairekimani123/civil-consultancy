@@ -27,10 +27,10 @@
         .csr-story-grid { display: flex; flex-wrap: wrap; gap: 3rem; align-items: center; }
         .csr-story-content { flex: 1.2; min-width: 280px; }
         .csr-visual { flex: 1; min-width: 280px; position: relative; }
-        .csr-highlight-box { background: #0a2b3e; color: #fff; border-radius: 16px; padding: 1.8rem; margin: 1.5rem 0; border-left: 4px solid #c7a252; }
+        .csr-highlight-box { background: #29b3e9; color: #fff; border-radius: 16px; padding: 1.8rem; margin: 1.5rem 0; border-left: 4px solid #c7a252; }
         .csr-highlight-box h4 { font-size: 0.85rem; margin-bottom: 0.75rem; color: #c7a252; text-transform: uppercase; letter-spacing: 1px; }
         .csr-highlight-box p { font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 0; }
-        .csr-main-img { background: linear-gradient(135deg, #0a2b3e, #123b52); border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .csr-main-img { background: linear-gradient(135deg, #29b3e9, #29b3e9); border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
         .csr-main-img .img-placeholder { text-align: center; color: rgba(255,255,255,0.2); }
         .csr-main-img .img-placeholder .big-emoji { font-size: 5rem; }
         .csr-year-badge { position: absolute; top: -16px; right: -16px; background: #c7a252; color: #fff; border-radius: 50%; width: 90px; height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
@@ -49,10 +49,17 @@
         .how-card .icon-wrap { width: 50px; height: 50px; border-radius: 12px; background: #0a2b3e; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; color: #fff; }
         .how-card h4 { font-size: 1rem; color: #0a2b3e; margin-bottom: 0.4rem; }
         .how-card p { font-size: 0.88rem; color: #6c757d; line-height: 1.6; }
-        .commitment-banner { background: linear-gradient(135deg, #c7a252, #b38f40); padding: 60px 0; text-align: center; color: #fff; border-radius: 20px; margin: 40px 0; }
+        .commitment-banner { background: linear-gradient(135deg, #29b3e9, #29b3e9); padding: 60px 0; text-align: center; color: #fff; border-radius: 20px; margin: 40px 0; }
         .commitment-banner h2 { font-size: 2rem; margin-bottom: 1rem; }
         .commitment-banner p { max-width: 600px; margin: 0 auto 1.5rem; opacity: 0.9; }
         @media (max-width: 768px) { .csr-story-grid { flex-direction: column; } .impact-grid { grid-template-columns: 1fr; } .how-grid { grid-template-columns: 1fr; } }
+        .inner-intro.bg-img {
+    background-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902') !important;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* For parallax effect */
+}
     </style>
 </head>
 <body>
