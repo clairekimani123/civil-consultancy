@@ -31,28 +31,114 @@
             cursor: pointer; transition: all 0.3s ease;
         }
         .filter-btn:hover, .filter-btn.active { background: #0a2b3e; border-color: #0a2b3e; color: #fff; }
-        .clients-portfolio-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem; }
-        .client-card {
-            background: #fff; border-radius: 16px; border: 1px solid rgba(10,43,62,0.08);
-            padding: 1.8rem 1.2rem; text-align: center; transition: all 0.3s ease;
-            cursor: default; position: relative; overflow: hidden;
-        }
-        .client-card::before {
-            content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-            height: 3px; background: #c7a252; transform: scaleX(0); transition: all 0.3s ease;
-        }
-        .client-card:hover::before { transform: scaleX(1); }
-        .client-card:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.1); transform: translateY(-5px); border-color: transparent; }
-        .client-icon {
-            width: 64px; height: 64px; border-radius: 16px; background: rgba(199,162,82,0.1);
-            display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
-            margin: 0 auto 1.2rem;
-        }
-        .client-card h3 { font-size: 1rem; color: #0a2b3e; margin-bottom: 0.35rem; font-weight: 600; }
-        .client-card .sector-tag {
-            display: inline-block; background: rgba(199,162,82,0.12); color: #c7a252;
-            padding: 0.2rem 0.9rem; border-radius: 40px; font-size: 0.7rem; font-weight: 600;
-        }
+       .clients-portfolio-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 1rem 3rem 1.5rem; /* Increased side padding for breathing room */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    width: 100%;
+    box-sizing: border-box;
+    
+}
+
+/* Custom Scrollbar - Gold Theme */
+.clients-portfolio-grid::-webkit-scrollbar {
+    height: 6px;
+}
+.clients-portfolio-grid::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+.clients-portfolio-grid::-webkit-scrollbar-thumb {
+    background: #c7a252;
+    border-radius: 10px;
+}
+.clients-portfolio-grid::-webkit-scrollbar-thumb:hover {
+    background: #b38f40;
+}
+
+/* ===== CLIENT CARD ===== */
+.client-card {
+    flex: 0 0 auto;
+    min-width: 280px;
+    max-width: 280px;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid rgba(10,43,62,0.08);
+    padding: 1.8rem 1.2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    scroll-snap-align: start;
+}
+
+.client-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #c7a252;
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+}
+
+.client-card:hover::before {
+    transform: scaleX(1);
+}
+
+.client-card:hover {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+    border-color: transparent;
+}
+
+.client-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: rgba(199,162,82,0.1);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 1.2rem;
+}
+
+.client-card h3 {
+    font-size: 1.25rem;
+    color: #0a2b3e;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+
+.client-card .sector-tag {
+    display: inline-block;
+    background: rgba(199,162,82,0.12);
+    color: #c7a252;
+    padding: 0.2rem 0.9rem;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* Ensure images fit nicely */
+.client-card img {
+    max-width: 100%;
+    height: auto;
+    max-height: 80px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
         .sectors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
         .sector-card {
             background: #fff; border-radius: 16px; padding: 2rem; border: 1px solid rgba(10,43,62,0.06);
@@ -61,7 +147,7 @@
         .sector-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.08); transform: translateY(-4px); }
         .sector-card .sector-icon { font-size: 2.2rem; margin-bottom: 1rem; }
         .sector-card h3 { font-size: 1.1rem; color: #0a2b3e; margin-bottom: 0.5rem; }
-        .sector-card p { font-size: 0.88rem; color: #6c757d; line-height: 1.6; }
+        .sector-card p { font-size: 1.30rem; color: #6c757d; line-height: 1.6; }
         .testimonial-card { max-width: 700px; margin: 0 auto; text-align: center; background: #29b3e9; padding: 2.5rem; border-radius: 20px; color: #fff; }
         .quote-mark { font-size: 5rem; color: #c7a252; line-height: 1; opacity: 0.5; display: block; margin-bottom: 1rem; }
         .testimonial-card blockquote { font-size: 1.2rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem; }
@@ -83,15 +169,7 @@
     <div id="preloader"><div class="sk-circle"><div class="sk-circle1 sk-child"></div><div class="sk-circle2 sk-child"></div><div class="sk-circle3 sk-child"></div><div class="sk-circle4 sk-child"></div><div class="sk-circle5 sk-child"></div><div class="sk-circle6 sk-child"></div><div class="sk-circle7 sk-child"></div><div class="sk-circle8 sk-child"></div><div class="sk-circle9 sk-child"></div><div class="sk-circle10 sk-child"></div><div class="sk-circle11 sk-child"></div><div class="sk-circle12 sk-child"></div></div></div>
 
     <header id="header" class="header header-1">
-        <div id="top-bar" class="top-bar-section top-bar-bg-color">
-            <div class="container"><div class="row"><div class="col-sm-12">
-                <div class="top-contact link-hover-black hidden-sm-down">
-                    <a href="tel:+254721312348"><i class="fa fa-phone"></i> (+254) 721 312348</a>
-                    <a href="mailto:info@careerserve.co.ke"><i class="fa fa-envelope"></i> info@careerserve.co.ke</a>
-                </div>
-                <div class="top-social-icon icons-hover-black"><ul><li><a href="#"><i class="ion-clipboard"></i> Quick Enquiry</a></li><li><a href="login.html"><i class="ion-power"></i> Login</a> / <a href="register.html"> Sign up</a></li><li><a href="#"><i class="ion-ios-bell"></i> Emergency</a></li></ul></div>
-            </div></div></div>
-        </div>
+        
         <div class="nav-wrap"><div class="container"><div class="row"><div class="col-md-3 d-flex align-items-center"><div class="logo"><a href="index.html"><img src="assets/images/Career Serve Logo.png" alt="Career Serve"></a></div><button id="menu" class="menu hidden-md-up"></button></div>
         <div class="col-md-9 nav-bg"><nav class="navigation"><ul><li><a href="#!">Home</a><i class="ion-ios-plus-empty hidden-md-up"></i><ul class="sub-nav"><li><a href="index.html">Home</a></li></ul></li>
         <li><a href="#!">About us</a><i class="ion-ios-plus-empty hidden-md-up"></i><ul class="sub-nav"><li><a href="about.html">About</a></li></ul></li>
@@ -106,13 +184,13 @@
     </section>
 
     <section class="padding pt-xs-40" style="padding-bottom:0;">
-        <div class="container"><div class="row"><div class="col-md-12 text-center"><p style="font-size:1rem; color:#4a5568; max-width:800px; margin:0 auto;">Career Serve boasts a diverse clientele including major players in finance, technology, media, NGOs, and government — illustrating our capability to adapt and deliver across industries.</p></div></div></div>
+        <div class="container"><div class="row"><div class="col-md-12 text-center"><p  style="font-size: 1.125rem; line-height: 1.8; color: #555; color:#4a5568; max-width:800px; margin:0 auto;">Career Serve boasts a diverse clientele including major players in finance, technology, media, NGOs, and government — illustrating our capability to adapt and deliver across industries.</p></div></div></div>
     </section>
 
     <!-- Clients Grid -->
     <section class="padding ptb-xs-40">
         <div class="container">
-            <div class="row pb-30"><div class="col-md-12"><div class="sec-title text-center"><h2><span>Trusted</span> by 50+ Organizations</h2><p>Our portfolio spans organizations of all sizes, across both public and private sectors, in Kenya and beyond.</p></div></div></div>
+            <div class="row pb-30"><div class="col-md-12"><div class="sec-title text-center"><h2><span>Trusted</span> by 50+ Organizations</h2><p  style="font-size: 1.125rem; line-height: 1.8; color: #555;">Our portfolio spans organizations of all sizes, across both public and private sectors, in Kenya and beyond.</p></div></div></div>
             <div class="clients-portfolio-grid">
                 <div class="client-card"><div class="client-icon"></div>
                 <img src="data:image/jpeg;base64,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" alt="StarTimes">
@@ -171,16 +249,88 @@
     </section>
 
     <!-- FOOTER -->
-    <footer><div class="top_footer_info__block ptb-20"><div class="container"><div class="row"><div class="col-sm-4"><div class="single_info__block"><i class="fa fa-phone"></i><h4>(+254) 721 312348 <span>Mon-Fri, 8am-7pm</span></h4></div></div><div class="col-sm-4"><div class="single_info__block"><i class="fa fa-envelope-o"></i><h4>info@careerserve.co.ke <span>24/7 Support</span></h4></div></div><div class="col-sm-4"><div class="single_info__block"><i class="fa fa-bullhorn"></i><h4>Request a quote <span>Tailored HR solutions</span></h4></div></div></div></div></div>
-    <div class="main_footer__block pb-0 pt-60"><div class="container"><div class="row"><div class="col-lg-3"><div class="footer_box__block"><h4>Career Serve</h4><p>A premier HR outsourcing firm established in 2015, delivering innovative and strategic HR solutions across Kenya and global markets.</p></div></div>
+    <footer><div class="main_footer__block pb-0 pt-60"><div class="container"><div class="row"><div class="col-lg-3"><div class="footer_box__block"><h4>Career Serve</h4><p>A premier HR outsourcing firm established in 2015, delivering innovative and strategic HR solutions across Kenya and global markets.</p></div></div>
     <div class="col-lg-3 mt-sm-30 mt-xs-30"><div class="footer_box__block"><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="csr.html">CSR</a></li><li><a href="contact.html">Contact</a></li></ul></div></div>
     <div class="col-lg-3 mt-xs-30 mt-sm-30"><div class="footer_box__block"><h4>Our Services</h4><ul><li><a href="services.html">Talent Acquisition</a></li><li><a href="services.html">Training & Capacity</a></li><li><a href="services.html">Customer Support</a></li><li><a href="services.html">Payroll Management</a></li><li><a href="services.html">Workforce Management</a></li><li><a href="services.html">HR Audit</a></li></ul></div></div>
-    <div class="col-lg-3 mt-sm-30 mt-xs-30"><div class="footer_box__block address-box"><h4>Contact info</h4><ul><li><i class="fa fa-map-marker"></i><p>Victoria Towers – Ground Floor, Kilimanjaro Road, Upperhill, Nairobi, Kenya</p></li><li><i class="fa fa-envelope-o"></i><p><a href="mailto:info@careerserve.co.ke">info@careerserve.co.ke</a></p></li><li><i class="fa fa-globe"></i><p>www.careerserve.co.ke</p></li><li><i class="fa fa-clock-o"></i><p>Monday-Friday, 9am-6pm</p></li></ul></div></div></div>
+    <div class="col-lg-3 mt-sm-30 mt-xs-30"><div class="footer_box__block address-box"><h4>Contact info</h4><ul><li><i class="fa fa-map-marker"></i><p>Victoria Towers – Ground Floor, Kilimanjaro Road, Upperhill, Nairobi, Kenya</p></li><li><i class="fa fa-envelope-o"></i><p><a href="mailto:info@careerserve.ke">info@careerserve.ke</a></p></li><li><i class="fa fa-globe"></i></li><li><i class="fa fa-clock-o"></i><p>Monday-Friday, 9am-6pm</p></li></ul></div></div></div>
     <div class="copyriight_block ptb-20 mt-20"><div class="row"><div class="col-sm-6"><a href="#" class="footer__block-logo"><img src="assets/images/Career Serve Logo.png" alt="Career Serve"></a></div><div class="col-sm-6 text-right"><p>© 2025 Career Serve Limited. All rights reserved. Integrity · Innovation · Excellence</p></div></div></div></div></div></footer>
 
     <script src="assets/js/jquery.min.js"></script><script src="assets/js/jquery-ui.min.js"></script><script src="assets/js/bootstrap.min.js"></script><script src="assets/js/owl.carousel.js"></script>
     <script src="assets/js/jquery.fancybox.pack.js"></script><script src="assets/js/jquery.themepunch.tools.min.js"></script><script src="assets/js/jquery.themepunch.revolution.min.js"></script>
     <script src="assets/js/jquery.revolution.js"></script><script src="assets/js/custom.js"></script>
     <script>$(document).ready(function(){$('#preloader').fadeOut('slow');});</script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.clients-portfolio-grid');
+    if (!slider) return;
+
+    let scrollInterval;
+    let isPaused = false;
+    const scrollDelay = 3000; // 3 seconds per card
+
+    function getScrollAmount() {
+        const firstCard = slider.querySelector('.client-card');
+        if (!firstCard) return 304; // Fallback: 280px card + 24px gap
+        const cardWidth = firstCard.offsetWidth;
+        const gap = 24; // 1.5rem in pixels
+        return cardWidth + gap;
+    }
+
+    function autoScroll() {
+        if (isPaused) return;
+
+        const scrollAmount = getScrollAmount();
+        const maxScroll = slider.scrollWidth - slider.clientWidth;
+
+        // Check if we've reached the end (with small tolerance)
+        if (slider.scrollLeft >= maxScroll - 10) {
+            // Smoothly scroll back to start
+            slider.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            // Scroll to next card
+            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    }
+
+    // Start auto-scrolling
+    function startScrolling() {
+        scrollInterval = setInterval(autoScroll, scrollDelay);
+    }
+
+    function stopScrolling() {
+        clearInterval(scrollInterval);
+    }
+
+    // Initial start
+    startScrolling();
+
+    // Pause on hover (so users can read)
+    slider.addEventListener('mouseenter', function() {
+        isPaused = true;
+        stopScrolling();
+    });
+
+    // Resume when mouse leaves
+    slider.addEventListener('mouseleave', function() {
+        isPaused = false;
+        startScrolling();
+    });
+
+    // Also pause when user manually scrolls
+    let userScrollTimeout;
+    slider.addEventListener('scroll', function() {
+        isPaused = true;
+        stopScrolling();
+
+        // Resume auto-scrolling 2 seconds after user stops scrolling
+        clearTimeout(userScrollTimeout);
+        userScrollTimeout = setTimeout(function() {
+            isPaused = false;
+            startScrolling();
+        }, 2000);
+    });
+});
+</script>
 </body>
 </html>

@@ -39,12 +39,78 @@
         .img-scale:hover figure img { transform: scale(1.05); filter: brightness(1.02) contrast(1.02); }
         .img-scale figure::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(10,43,62,0) 0%, rgba(10,43,62,0.1) 100%); opacity: 0; transition: opacity 0.4s; pointer-events: none; border-radius: 12px; }
         .img-scale:hover figure::after { opacity: 1; }
-        .service-box { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); height: 100%; }
+        .service-box { 
+    background: #fff; 
+    border-radius: 16px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+    transition: all 0.3s ease; 
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+}
+.service-box:hover { 
+    transform: translateY(-6px); 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+}
+
+.service-box figure { 
+    margin: 0; 
+    overflow: hidden; 
+    background: #f8f9fa;
+   padding: 1.20rem 1.25rem 1.60rem;
+}
+.service-box figure img { 
+    width: 100%; 
+    height: 200px; 
+    object-fit: contain; 
+    transition: transform 0.3s ease; 
+}
+.service-box:hover figure img { 
+    transform: scale(1.05); 
+}
+
+.service-text { 
+    padding: 1.75rem 1.15rem 1.15rem;
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* ✅ CLEAN HEADING STYLE (Overrides blue background) */
+.service-text h3 { 
+    font-size: 1.25rem; 
+    font-weight: 600; 
+    color: #0a2b3e; 
+
+    line-height: 1.3;
+    
+    /* Force removal of any background/block styling */
+    background: transparent !important; 
+    padding: 0 !important; 
+    color: #0a2b3e !important; 
+    display: block;
+}
+
+/* ✅ Neutralize the extra padding wrappers in your HTML */
+.service-text .padding-10,
+.service-text .padding-20 { 
+    padding: 0 !important; 
+    margin: 0;
+}
+
+.service-text p { 
+    color: #666; 
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+    margin: 0; 
+}
+        /* .service-box { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); height: 100%; } */
         .service-box:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
         .service-box figure img { width: 100%; height: 220px; object-fit: cover; }
         .service-text { padding: 1.5rem 1rem 2rem; }
-        .service-text h3 { font-size: 1.4rem; font-weight: 400; margin-bottom: 1rem; }
-        .service-text h3 i { margin-right: 10px; font-size: 1.8rem; vertical-align: middle; }
+        /* .service-text h3 { font-size: 1.4rem; font-weight: 400; margin-bottom: 1rem; }
+        .service-text h3 i { margin-right: 10px; font-size: 1.8rem; vertical-align: middle; } */
         .about_box { background: #fff; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); }
         .about_box:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
         .about_box figure img { width: 100%; height: 240px; object-fit: cover; }
@@ -77,29 +143,114 @@
         .toast-msg { position: fixed; bottom: 30px; right: 30px; background: #28a745; color: white; padding: 12px 24px; border-radius: 40px; font-weight: 500; z-index: 9999; box-shadow: 0 5px 20px rgba(0,0,0,0.2); animation: fadeInUp 0.3s ease; }
         .toast-msg.error { background: #dc3545; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-		    .clients-portfolio-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem; }
+/* ===== HORIZONTAL SCROLLING CONTAINER ===== */
+.clients-portfolio-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 1rem 3rem 1.5rem; /* Increased side padding for breathing room */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-		      .client-card {
-            background: #fff; border-radius: 16px; border: 1px solid rgba(10,43,62,0.08);
-            padding: 1.8rem 1.2rem; text-align: center; transition: all 0.3s ease;
-            cursor: default; position: relative; overflow: hidden;
-        }
-        .client-card::before {
-            content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-            height: 3px; background: #c7a252; transform: scaleX(0); transition: all 0.3s ease;
-        }
-        .client-card:hover::before { transform: scaleX(1); }
-        .client-card:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.1); transform: translateY(-5px); border-color: transparent; }
-        .client-icon {
-            width: 64px; height: 64px; border-radius: 16px; background: rgba(199,162,82,0.1);
-            display: none; align-items: center; justify-content: center; font-size: 1.8rem;
-            margin: 0 auto 1.2rem;
-        }
-        .client-card h3 { font-size: 1rem; color: #0a2b3e; margin-bottom: 0.35rem; font-weight: 600; }
-        .client-card .sector-tag {
-            display: inline-block; background: rgba(199,162,82,0.12); color: #c7a252;
-            padding: 0.2rem 0.9rem; border-radius: 40px; font-size: 0.7rem; font-weight: 600;
-        }
+/* Custom Scrollbar - Gold Theme */
+.clients-portfolio-grid::-webkit-scrollbar {
+    height: 6px;
+}
+.clients-portfolio-grid::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+.clients-portfolio-grid::-webkit-scrollbar-thumb {
+    background: #c7a252;
+    border-radius: 10px;
+}
+.clients-portfolio-grid::-webkit-scrollbar-thumb:hover {
+    background: #b38f40;
+}
+
+/* ===== CLIENT CARD ===== */
+.client-card {
+    flex: 0 0 auto;
+    min-width: 280px;
+    max-width: 280px;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid rgba(10,43,62,0.08);
+    padding: 1.8rem 1.2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    scroll-snap-align: start;
+}
+
+.client-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #c7a252;
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+}
+
+.client-card:hover::before {
+    transform: scaleX(1);
+}
+
+.client-card:hover {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+    border-color: transparent;
+}
+
+.client-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: rgba(199,162,82,0.1);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 1.2rem;
+}
+
+.client-card h3 {
+    font-size: 1rem;
+    color: #0a3e3a;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+
+.client-card .sector-tag {
+    display: inline-block;
+    background: rgba(199,162,82,0.12);
+    color: #c7a252;
+    padding: 0.2rem 0.9rem;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* Ensure images fit nicely */
+.client-card img {
+    max-width: 100%;
+    height: auto;
+    max-height: 80px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
     </style>
 </head>
 <body>
@@ -116,26 +267,8 @@
 
 <!-- HEADER (Original layout preserved) -->
 <header id="header" class="header header-1">
-    <div id="top-bar" class="top-bar-section top-bar-bg-color">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="top-contact link-hover-black hidden-sm-down">
-                        <a href="tel:+254721312348"><i class="fa fa-phone"></i> (+254) 721 312348</a>
-                        <a href="mailto:info@careerserve.co.ke"><i class="fa fa-envelope"></i> info@careerserve.co.ke</a>
-                    </div>
-                    <div class="top-social-icon icons-hover-black">
-                        <ul>
-                            <li><a href="#" data-toggle="modal" data-target=".join-now-form"><i class="ion-clipboard"></i> Quick Enquiry</a></li>
-                            <li><a href="login.html"><i class="ion-power"></i> Login</a> / <a href="register.html"> Sign up</a></li>
-                            <li><a href="#" data-toggle="modal" data-target=".emergency-call"><i class="ion-ios-bell"></i> Emergency</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="nav-wrap">
+
+    <div class="nav-wrap bg-color #16cde6">
         <div class="container">
             <div class="row">
                 <div class="col-md-3 d-flex align-items-center">
@@ -266,7 +399,7 @@
         <div class="row pb-50 pb-xs-30"><div class="col-md-12"><div class="sec-title text-center"><h2><span>Our</span> HR Solutions</h2></div></div></div>
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-30"><div class="service-box img-scale"><figure><img src="assets/images/acquisition.png" alt="Talent Acquisition"></figure><div class="service-text"><h3>Talent Acquisition & Placements</h3><div class="padding-10"><p>Comprehensive recruitment from job posting to placement, including headhunting, executive search, and thorough psychometric vetting.</p></div></div></div></div>
-            <div class="col-lg-4 col-md-6 mb-30"><div class="service-box img-scale"><figure><img src="assets/images/Capacity Building.png" alt="Training & Capacity"></figure><div class="service-text"><h3>Training & Capacity Building</h3><div class="padding-20"><p>Customized programs designed to enhance skills and leadership capabilities, fostering a sustainable leadership pipeline.</p></div></div></div></div>
+            <div class="col-lg-4 col-md-6 mb-30"><div class="service-box img-scale"><figure><img src="assets/images/building capacity.png" alt="Training & Capacity"></figure><div class="service-text"><h3>Training & Capacity Building</h3><div class="padding-20"><p>Customized programs designed to enhance skills and leadership capabilities, fostering a sustainable leadership pipeline.</p></div></div></div></div>
             <div class="col-lg-4 col-md-6 mb-30"><div class="service-box img-scale"><figure><img src="assets/images/customer support.png" alt="Customer Support"></figure><div class="service-text"><h3> Customer Support</h3><div class="padding-20"><p>24/7 support services ensuring client and employee satisfaction, backed by trained staff equipped for diverse customer needs.</p></div></div></div></div>
             <div class="col-lg-4 col-md-6 mb-30"><div class="service-box img-scale"><figure><img src="assets/images/payroll.png" alt="Payroll Management"></figure><div class="service-text"><h3> Payroll Management</h3><div class="padding-20"><p>Efficient payroll handling fully compliant with local and international tax laws, with seamless technology integration.</p></div></div></div></div>
             <div class="col-lg-4 col-md-6 mb-xs-30"><div class="service-box img-scale"><figure><img src="assets/images/Workforce Management.png" alt="Workforce Management"></figure><div class="service-text"><h3> Workforce Management</h3><div class="padding-20"><p>Strategic systems to optimize staffing, improve operational efficiency, and leverage modern monitoring tools.</p></div></div></div></div>
@@ -303,16 +436,7 @@
         </div>
     </section>
 
-<!-- Testimonial with Career Serve Style -->
-<section class="testimonial-block__section paddinTetstimonialg ptb-xs-40 padding overlay-bg">
-    <div class="container">
-        <div class="row pb-50 pb-xs-30"><div class="col-md-12"><div class="sec-title text-center"><h2><span>Client</span> Testimonials</h2></div></div></div>
-        <div id="testimonial" class="nf-carousel-theme nf-carousel-arrow">
-            <div class="testimonial-box-block"><div class="testimonial-box row"><div class="col-md-5 col-lg-5"><img src="assets/imagescivil2/testimonial/alex.png" alt="Client"></div><div class="col-md-7 col-lg-7"><div class="quote-box"><div class="quote-icon quote-left"><i class="fa fa-quote-left"></i></div><div class="quote-text"><p>Career Serve transformed our HR operations. Their talent acquisition process is unmatched, and their team truly understands our needs.</p></div><div class="quote-icon quote-right"><i class="fa fa-quote-right"></i><strong class="quote-author">CEO, Leading Media House</strong></div></div></div></div></div>
-            <div class="testimonial-box-block"><div class="testimonial-box row"><div class="col-md-5 col-lg-5"><img src="assets/imagescivil2/testimonial/sarah senkins.png" alt="Client"></div><div class="col-md-7 col-lg-7"><div class="quote-box"><div class="quote-icon quote-left"><i class="fa fa-quote-left"></i></div><div class="quote-text"><p>Professional, responsive, and results-driven. Career Serve is our go-to HR partner for workforce management and payroll solutions.</p></div><div class="quote-icon quote-right"><i class="fa fa-quote-right"></i><strong class="quote-author">HR Director, International NGO</strong></div></div></div></div></div>
-        </div>
-    </div>
-</section>
+
 
 <!-- Blog / Insights Section -->
 <section class="latest__block padding ptb-xs-60 gray-bg">
@@ -327,46 +451,18 @@
 </section>
 
 <!-- Functional Contact Form -->
-<section class="ptb-40 bottom-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-sm-12">
-                <div class="contact_block-text">
-                    <strong>Ready to Transform Your HR?</strong>
-                    <!-- <p>Partner with Career Serve and experience the difference</p> -->
-                </div>
-            </div>
-            <div class="col-lg-6 col-sm-12">
-                <form id="functionalContactForm">
-                    <div class="row">
-                        <div class="col-sm-6"><div class="form-field"><input class="input-sm form-full" id="name" type="text" name="name" placeholder="Your Name" required></div></div>
-                        <div class="col-sm-6"><div class="form-field"><input class="input-sm form-full" id="email" type="email" name="email" placeholder="Email Address" required></div></div>
-                        <div class="col-sm-8 mb-xs-15"><div class="form-field"><textarea class="form-full" id="message" rows="7" name="message" placeholder="Your Message" required></textarea></div></div>
-                        <div class="col-sm-4 text-center text-sm-left"><button class="boxed_btn__block bnt btn-text" type="submit">Submit</button></div>
-                    </div>
-                    <div id="formFeedback" style="margin-top:15px; font-size:14px;"></div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <!-- FOOTER with Career Serve contact info -->
 <footer>
-    <div class="top_footer_info__block ptb-20">
-        <div class="container"><div class="row">
-            <div class="col-md-4"><div class="single_info__block"><i class="fa fa-phone"></i><h4>(+254) 721 312348 <span>Mon-Fri, 8am-7pm</span></h4></div></div>
-            <div class="col-md-4"><div class="single_info__block"><i class="fa fa-envelope-o"></i><h4>info@careerserve.co.ke <span>24/7 Support</span></h4></div></div>
-            <div class="col-md-4"><div class="single_info__block"><i class="fa fa-bullhorn"></i><h4>Request a quote <span>Tailored HR solutions</span></h4></div></div>
-        </div></div>
-    </div>
+ 
     <div class="main_footer__block pb-0 pt-60">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3"><div class="footer_box__block"><h4>Career Serve</h4><p>A premier HR outsourcing firm established in 2015, delivering innovative HR solutions across Kenya and global markets.</p></div></div>
                 <div class="col-lg-3 mt-sm-30 mt-xs-30"><div class="footer_box__block"><h4>Navigation</h4><ul><li><a href="#">Home</a></li><li><a href="#">About Us</a></li><li><a href="#">Services</a></li><li><a href="#">Portfolio</a></li><li><a href="#">CSR</a></li><li><a href="#">Contact</a></li></ul></div></div>
                 <div class="col-lg-3 mt-xs-30 mt-sm-30"><div class="footer_box__block"><h4>Our Services</h4><ul><li><a href="#">Talent Acquisition</a></li><li><a href="#">Training & Capacity</a></li><li><a href="#">Customer Support</a></li><li><a href="#">Payroll Management</a></li><li><a href="#">Workforce Management</a></li><li><a href="#">HR Audit</a></li></ul></div></div>
-                <div class="col-lg-3 mt-sm-30 mt-xs-30"><div class="footer_box__block address-box"><h4>Contact info</h4><ul><li><i class="fa fa-map-marker"></i><p>Victoria Towers – Ground Floor, Kilimanjaro Road, Upperhill, Nairobi, Kenya</p></li><li><i class="fa fa-envelope-o"></i><p><a href="mailto:info@careerserve.co.ke">info@careerserve.co.ke</a></p></li><li><i class="fa fa-globe"></i><p>www.careerserve.co.ke</p></li></ul></div></div>
+                <div class="col-lg-3 mt-sm-30 mt-xs-30"><div class="footer_box__block address-box"><h4>Contact info</h4><ul><li><i class="fa fa-map-marker"></i><p>Victoria Towers – Ground Floor, Kilimanjaro Road, Upperhill, Nairobi, Kenya</p></li><li><i class="fa fa-envelope-o"></i><p><a href="mailto:info@careerserve.ke">info@careerserve.ke</a></p></li></ul></div></div>
             </div>
             <div class="copyriight_block ptb-20 mt-20"><div class="row"><div class="col-sm-6"><a href="#" class="footer__block-logo"><img src="assets/images/Career Serve Logo.png" alt="Career Serve"></a></div><div class="col-sm-6 text-right"><p>© 2025 Career Serve Limited. All rights reserved. Integrity · Innovation · Excellence</p></div></div></div>
         </div>
@@ -404,6 +500,79 @@
         });
         function showToast(msg, bg) { $('.toast-msg').remove(); $('body').append('<div class="toast-msg" style="background:'+bg+'">'+msg+'</div>'); setTimeout(function() { $('.toast-msg').fadeOut(300, function() { $(this).remove(); }); }, 4000); }
     });
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.clients-portfolio-grid');
+    if (!slider) return;
+
+    let scrollInterval;
+    let isPaused = false;
+    const scrollDelay = 3000; // 3 seconds per card
+
+    function getScrollAmount() {
+        const firstCard = slider.querySelector('.client-card');
+        if (!firstCard) return 304; // Fallback: 280px card + 24px gap
+        const cardWidth = firstCard.offsetWidth;
+        const gap = 24; // 1.5rem in pixels
+        return cardWidth + gap;
+    }
+
+    function autoScroll() {
+        if (isPaused) return;
+
+        const scrollAmount = getScrollAmount();
+        const maxScroll = slider.scrollWidth - slider.clientWidth;
+
+        // Check if we've reached the end (with small tolerance)
+        if (slider.scrollLeft >= maxScroll - 10) {
+            // Smoothly scroll back to start
+            slider.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            // Scroll to next card
+            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    }
+
+    // Start auto-scrolling
+    function startScrolling() {
+        scrollInterval = setInterval(autoScroll, scrollDelay);
+    }
+
+    function stopScrolling() {
+        clearInterval(scrollInterval);
+    }
+
+    // Initial start
+    startScrolling();
+
+    // Pause on hover (so users can read)
+    slider.addEventListener('mouseenter', function() {
+        isPaused = true;
+        stopScrolling();
+    });
+
+    // Resume when mouse leaves
+    slider.addEventListener('mouseleave', function() {
+        isPaused = false;
+        startScrolling();
+    });
+
+    // Also pause when user manually scrolls
+    let userScrollTimeout;
+    slider.addEventListener('scroll', function() {
+        isPaused = true;
+        stopScrolling();
+
+        // Resume auto-scrolling 2 seconds after user stops scrolling
+        clearTimeout(userScrollTimeout);
+        userScrollTimeout = setTimeout(function() {
+            isPaused = false;
+            startScrolling();
+        }, 2000);
+    });
+});
 </script>
 </body>
 </html>
